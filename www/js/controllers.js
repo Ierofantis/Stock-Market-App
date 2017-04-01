@@ -1,13 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('Test.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -41,16 +34,47 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+.controller('MyStocksCtrl', ['$scope',
+function($scope){
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+$scope.myStocksArray = [
+  {ticker: "AAPL"},
+  {ticker: "FB"},
+  {ticker: "NFLX"},
+  {ticker: "INTC"},
+  {ticker: "C"},
+  {ticker: "T"},
+  {ticker: "GE"}
+  ];
+  
+}])
+
+.controller('StockCtrl', ['$scope','$stateParams','stockDataService',
+function($scope,$stateParams,stockDataService){
+
+$scope.ticker = $stateParams.stockTicker;
+
+  $scope.$on( "$ionicView.afterEnter", function(  ) {
+  getPriceData();
+ 
+  });
+
+  function getPriceData(){
+  var promise = stockDataService.getPriceData($scope.ticker);
+  promise.then(function(data){
+  console.log(data);
+   $scope.stockPriceData =data;
+  })
+}
+
+ function getDetailsData(){
+
+  var promise = stockDataService.getDetailsData($scope.ticker);
+
+  promise.then(function(data){
+    console.log(data);
+    $scope.stockDetailsData =data;
+  });
+ }
+}]);
+
