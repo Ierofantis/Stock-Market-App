@@ -1,4 +1,4 @@
-angular.module('Test', ['ionic', 
+angular.module('Test', ['ionic',
   'Test.controllers',
   'Test.services',
   'Test.filters',
