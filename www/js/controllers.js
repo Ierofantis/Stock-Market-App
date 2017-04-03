@@ -52,8 +52,8 @@ angular.module('Test.controllers', [])
 .controller('StockCtrl', ['$scope','$stateParams','$window','$ionicPopup', 'StorageService','stockDataService',
   function($scope,$stateParams,$window,$ionicPopup,StorageService,stockDataService){
 
-    $scope.ticker = $stateParams.stockTicker;
-    $scope.chartView =1;
+  $scope.ticker = $stateParams.stockTicker;
+  $scope.chartView =1;
 
   //local storage
   $scope.things = StorageService.getAll($scope.note);
@@ -78,7 +78,7 @@ angular.module('Test.controllers', [])
   // An elaborate, custom popup
   var note = $ionicPopup.show({
     template: '<input type="text" ng-model="note.title" id="stock-note-title"><textarea type="text" ng-model="note.body" id="stock-note-body"></textarea>',
-    title: 'New Note For'+$scope.ticker,    
+    title: 'New Note For'+ '' + $scope.ticker,    
     scope: $scope,
     buttons: [
     { text: 'Cancel' },
@@ -89,7 +89,7 @@ angular.module('Test.controllers', [])
         console.log("save",$scope.note)               
         StorageService.add($scope.note);
       }
-    }
+     }
     ]
   });
   note.then(function(res) {
