@@ -35,72 +35,75 @@ angular.module('Test.controllers', [])
 })
 
 .controller('MyStocksCtrl', ['$scope',
-function($scope){
+  function($scope){
 
-$scope.myStocksArray = [
-  {ticker: "AAPL"},
-  {ticker: "FB"},
-  {ticker: "NFLX"},
-  {ticker: "INTC"},
-  {ticker: "C"},
-  {ticker: "T"},
-  {ticker: "GE"}
-  ];
-  
-}])
+    $scope.myStocksArray = [
+    {ticker: "AAPL"},
+    {ticker: "FB"},
+    {ticker: "NFLX"},
+    {ticker: "INTC"},
+    {ticker: "C"},
+    {ticker: "T"},
+    {ticker: "GE"}
+    ];
+    
+  }])
 
-.controller('StockCtrl', ['$scope','$stateParams','$window','$ionicPopup','stockDataService',
-function($scope,$stateParams,$window,$ionicPopup,stockDataService){
+.controller('StockCtrl', ['$scope','$stateParams','$window','$ionicPopup', 'StorageService','stockDataService',
+  function($scope,$stateParams,$window,$ionicPopup,StorageService,stockDataService){
 
-$scope.ticker = $stateParams.stockTicker;
-$scope.chartView =1;
-  $scope.$on( "$ionicView.afterEnter", function(  ) {
-  getPriceData();
- 
-  });
- $scope.chartViewFunc = function(n){
-  $scope.chartView=n;
- }
- $scope.addNote = function() {
-  $scope.note = {title:'Note',body:'',date: $scope.todayDate,ticker:$scope.ticker}
+    $scope.ticker = $stateParams.stockTicker;
+    $scope.chartView =1;
 
+  //local storage
+  $scope.things = StorageService.getAll();
+  $scope.add = function (Note) {
+    StorageService.add(newThing);
+  };
+  $scope.remove = function (thing) {
+    StorageService.remove(thing);
+  };
+    $scope.$on( "$ionicView.afterEnter", function() {
+      getPriceData(); 
+         
+    });
+
+    $scope.chartViewFunc = function(n){
+      $scope.chartView=n;
+    }
+
+    $scope.addNote = function() {
+      $scope.note = {title:'Note',body:'',date: $scope.todayDate,ticker:$scope.ticker}
+      
   // An elaborate, custom popup
   var note = $ionicPopup.show({
     template: '<input type="text" ng-model="note.title" id="stock-note-title"><textarea type="text" ng-model="note.body" id="stock-note-body"></textarea>',
     title: 'New Note For'+$scope.ticker,    
     scope: $scope,
     buttons: [
-      { text: 'Cancel' },
-      {
-        text: '<b>Save</b>',
-        type: 'button-positive',
-        onTap: function(e) {
-          console.log("save", $scope.note)
-        }
+    { text: 'Cancel' },
+    {
+      text: '<b>Save</b>',
+      type: 'button-positive',
+      onTap: function(e) {
+        console.log("save",$scope.note)  
+        StorageService.add($scope.note);
       }
+    }
     ]
   });
   note.then(function(res) {
-    console.log('Tapped!', res);
+    console.log(res)
   }); 
 };
 
-  function getPriceData(){
+function getPriceData(){
   var promise = stockDataService.getPriceData($scope.ticker);
   promise.then(function(data){
-  console.log(data);
-   $scope.stockPriceData =data;
+    console.log(data);
+    $scope.stockPriceData =data;
   })
 }
 
- // function getDetailsData(){
-
- //  var promise = stockDataService.getDetailsData($scope.ticker);
-
- //  promise.then(function(data){
- //    console.log(data);
- //    $scope.stockDetailsData =data;
- //  });
- // }
 }]);
 

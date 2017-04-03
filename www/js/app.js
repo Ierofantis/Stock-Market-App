@@ -1,5 +1,7 @@
 angular.module('Test', ['ionic',
   'Test.controllers',
+  'angular-cache',
+  'ngStorage',
   'Test.services',
   'Test.filters',
   'Test.directives'
@@ -24,22 +26,22 @@ angular.module('Test', ['ionic',
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
 
-    .state('app.myStocks', {
-      url: '/my-stocks',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/my-stocks.html',
-          controller: 'MyStocksCtrl'
-        }
+  .state('app.myStocks', {
+    url: '/my-stocks',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/my-stocks.html',
+        controller: 'MyStocksCtrl'
       }
-    })
+    }
+  })
 
   .state('app.single', {
     url: '/:stockTicker',
@@ -52,4 +54,4 @@ angular.module('Test', ['ionic',
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/my-stocks');
- });
+});

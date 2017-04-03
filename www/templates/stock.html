@@ -36,8 +36,11 @@
 			</div>
 			<div class ="card">
 				<div class="item item-divider">Notes <span ng-click="addNote()">Add</span></div>
-				<a class="item">
-					<h2>Note Title</h2>
+				<a class="item" >	
+				<div ng-repeat="x in things">				
+					<h2 >{{x.title}}</h2>
+					<h6>{{x.body}}</h6>				
+					</div>
 				</a>
 			</div>
 			<div class ="card">
