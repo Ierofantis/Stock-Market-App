@@ -36,11 +36,13 @@
 			</div>
 			<div class ="card">
 				<div class="item item-divider">Notes <span ng-click="addNote()">Add</span></div>
-				<a class="item" >	
-				<div ng-repeat="x in things">				
-					<h2 >{{x.title}}</h2>
-					<h6>{{x.body}}</h6>				
-					</div>
+				<a class="item">	
+				<span ng-repeat="x in things">
+					<span  ng-if="ticker == x.ticker" >				
+					<h2>{{x.title}}</h2>
+					<h4>{{x.body}}<span class="ion-close-circled" ng-click="remove(x)"></span></h4>				
+					</span>
+				</span>
 				</a>
 			</div>
 			<div class ="card">

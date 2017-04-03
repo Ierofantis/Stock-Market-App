@@ -56,9 +56,9 @@ angular.module('Test.controllers', [])
     $scope.chartView =1;
 
   //local storage
-  $scope.things = StorageService.getAll();
+  $scope.things = StorageService.getAll($scope.note);
   $scope.add = function (Note) {
-    StorageService.add(newThing);
+    StorageService.add(newThing);  
   };
   $scope.remove = function (thing) {
     StorageService.remove(thing);
@@ -86,7 +86,7 @@ angular.module('Test.controllers', [])
       text: '<b>Save</b>',
       type: 'button-positive',
       onTap: function(e) {
-        console.log("save",$scope.note)  
+        console.log("save",$scope.note)               
         StorageService.add($scope.note);
       }
     }
