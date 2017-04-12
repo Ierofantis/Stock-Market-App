@@ -10,7 +10,9 @@
 #short-button-bar .button.active{
 	font-weight: bold;
 }
-
+.Add{
+  color:red;
+}
 .display-flex{
 	display:flex important;
 }
