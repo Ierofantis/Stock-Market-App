@@ -1,0 +1,22 @@
+/* Empty. Add your own CSS if you like */
+#short-button-bar .button{
+	line-height: normal;
+	min-height:10px;
+	border:none;
+	border-radius:0;
+	font-size:9px;
+	background-color: #fff;
+}
+#short-button-bar .button.active{
+	font-weight: bold;
+}
+
+.display-flex{
+	display:flex important;
+}
+.no-margin{
+	margin:0 important;
+}
+.Add{
+	color:red;
+}

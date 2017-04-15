@@ -1,0 +1,18 @@
+<ion-view view-title="My Stocks">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="stock in myStocksArray track by $index" ng-href="#/app/{{stock.ticker}}">
+                <div class="row row-center">
+                    <div class="col">
+                        <h3>{{stock.ticker}} </h3>
+                    </div>
+                    <span class="ion-close-circled" ng-click="Remove(stock)">    
+                    </span>
+                </div>
+            </ion-item>
+        </ion-list>
+        <input type="text" class="form-control" ng-model="todoText.ticker" name="todoText" id="todoText" placeholder="Enter Stock">
+        <button class="button button-block button-positive" ng-click="addTodo()">Submit
+        </button>
+    </ion-content>
+</ion-view>
