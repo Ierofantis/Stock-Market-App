@@ -1,5 +1,4 @@
 angular.module('Test.services', [])
-<<<<<<< HEAD
     // create a new factory
     .factory('StorageService', function($localStorage) {
         $localStorage = $localStorage.$default({
@@ -22,7 +21,7 @@ angular.module('Test.services', [])
             remove: _remove
         };
     })
-=======
+
 // create a new factory
 .factory ('StorageService', function ($localStorage) {
     $localStorage = $localStorage.$default({
@@ -45,13 +44,13 @@ return {
     remove: _remove
   };
 })
->>>>>>> afca636919232fb151c9a7dae89796d4d07f49bf
+
 
 .factory('stockDataService', function($q, $http) {
 
     var getPriceData = function(ticker) {
         var deferred = $q.defer(),
-<<<<<<< HEAD
+
             url = 'http://finance.yahoo.com/webservice/v1/symbols/' + ticker + '/quote?format=json&view=detail'
 
         $http.get(url)
@@ -63,7 +62,7 @@ return {
             .error(function() {
                 deferred.reject();
             })
-=======
+
         url = 'http://finance.yahoo.com/webservice/v1/symbols/'+ticker+'/quote?format=json&view=detail'
 
         $http.get(url)
@@ -75,18 +74,17 @@ return {
         .error(function() {
             deferred.reject();
         })
->>>>>>> afca636919232fb151c9a7dae89796d4d07f49bf
+
         return deferred.promise;
     };
     return {
         getPriceData: getPriceData
     }
 });
-<<<<<<< HEAD
-=======
 
 
 
 
 
->>>>>>> afca636919232fb151c9a7dae89796d4d07f49bf
+
+
