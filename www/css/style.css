@@ -10,13 +10,22 @@
 #short-button-bar .button.active{
 	font-weight: bold;
 }
+<<<<<<< HEAD
 
+=======
+.Add{
+  color:red;
+}
+>>>>>>> afca636919232fb151c9a7dae89796d4d07f49bf
 .display-flex{
 	display:flex important;
 }
 .no-margin{
 	margin:0 important;
 }
+<<<<<<< HEAD
 .Add{
 	color:red;
 }
+=======
+>>>>>>> afca636919232fb151c9a7dae89796d4d07f49bf
