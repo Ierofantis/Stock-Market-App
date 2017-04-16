@@ -11,7 +11,7 @@
                 <h6>{{stockPriceData.chg_percent | shrinkNumber:2 }}%</h6>
             </div>
         </div>
-    </div>
+    </div> 
     <ion-content class="has-subheader">
         <div class="button-bar" id="short-button-bar">
             <a ng-click="chartViewFunc(1)" ng-class="chartView==1 ?'active' : '' " class="button">Day</a>
@@ -25,10 +25,10 @@
         <img ng-if="chartView ==4" ng-src="https://chart.finance.yahoo.com/z?s={{ticker}}&t=1y&q=l&l=on&z=s&p=m50,m200" style="width:100%" />
         <img ng-if="chartView ==5" ng-src="https://chart.finance.yahoo.com/z?s={{ticker}}&t=my&q=l&l=on&z=s&p=m50,m200" style="width:100%" />
         <div class="card">
-            <div class="item item-divider">Market Data</div>
+            <div class="item item-divider">Market Name</div>
             <div class="row row-center">
-                <div class="col">Data:</div>
-                <div class="col">1000.500</div>
+                <div class="col">Name:</div>
+                <div class="col">{{stockPriceData.name }}</div>
             </div>
             <div class="card">
                 <div class="item item-divider">Notes <span class="Add" ng-click="addNote()">Add</span></div>
@@ -41,12 +41,12 @@
                     </span>
                 </a>
             </div>
-            <div class="card">
+            <!-- <div class="card">
                 <div class="item item-divider">News</div>
                 <a class="item item-icon-right">
                     <h2>News Story Title</h2>
                     <i class="icon ion-ios-arrow-right"></i>
                 </a>
-            </div>
+            </div> -->
     </ion-content>
 </ion-view>

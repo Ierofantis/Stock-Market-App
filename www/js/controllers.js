@@ -34,8 +34,9 @@ angular.module('Test.controllers', [])
     };
 })
 
-.controller('MyStocksCtrl', ['$scope',
-        function($scope) {
+.controller('MyStocksCtrl', ['$scope', '$localStorage',
+        function($scope, $localStorage) {
+
 
             $scope.myStocksArray = [
                 { ticker: "AAPL" },
@@ -49,7 +50,7 @@ angular.module('Test.controllers', [])
             $scope.todoText = { ticker: '' };
             $scope.addTodo = function() {
                 $scope.myStocksArray.push($scope.todoText);
-                console.log($scope.myStocksArray)
+
             };
 
             $scope.Remove = function(x) {
